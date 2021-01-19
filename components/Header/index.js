@@ -1,7 +1,4 @@
-import styled, { css } from "styled-components";
-
-import findByType from "utils/findByType";
-import HeaderTitle from "./Title";
+import styled from "styled-components";
 
 const StyledHeader = styled.header`
   text-align: center;
@@ -16,50 +13,8 @@ const StyledHeader = styled.header`
   position: ${(props) => (props.overlay ? "absolute" : "relative")};
 `;
 
-const Title = () => null;
-Title.displayName = "Title";
-const Right = () => null;
-Right.displayName = "Right";
-const Left = () => null;
-Left.displayName = "Left";
-
 const Header = ({ children, ...props }) => {
-  const renderTitle = () => {
-    const title = findByType(children, Title);
-    if (!title) {
-      return null;
-    }
-
-    return <HeaderTitle>{title.props.children}</HeaderTitle>;
-  };
-
-  const renderLeft = () => {
-    const left = findByType(children, Left);
-    if (!left) {
-      return null;
-    }
-
-    return <div>{left.props.children}</div>;
-  };
-  const renderRight = () => {
-    const right = findByType(children, Right);
-    if (!right) {
-      return null;
-    }
-
-    return <div>{right.props.children}</div>;
-  };
-
-  return (
-    <StyledHeader {...props}>
-      {renderLeft()}
-      {renderTitle()}
-      {renderRight()}
-    </StyledHeader>
-  );
+  return <StyledHeader {...props}>{children}</StyledHeader>;
 };
 
-Header.Title = Title;
-Header.Left = Left;
-Header.Right = Right;
 export default Header;

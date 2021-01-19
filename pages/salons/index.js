@@ -1,42 +1,44 @@
+import { salons } from "salonData";
+
 import Header from "components/Header";
+import HeaderNavItem from "components/Header/HeaderNavItem";
+import HeaderTitle from "components/Header/HeaderTitle";
 import PriceFilter from "components/PriceFilter";
-import SalonList from "components/Salons/List";
-import SalonListItem from "components/Salons/ListItem";
+import SalonsList from "components/Salons/SalonsList";
+import SalonsListItem from "components/Salons/SalonsListItem";
 
-import ChevronLeft from "../../assets/icons/chevron-left.svg";
-import FilterIcon from "../../assets/icons/filter.svg";
+import { ChevronLeft, FilterIcon } from "components/Header/HeaderIcons";
 
-const Salons = ({ salons }) => {
+const SalonsPage = ({ salons }) => {
   return (
     <div>
       <Header>
-        <Header.Left>
+        <HeaderNavItem>
           <ChevronLeft />
-        </Header.Left>
-        <Header.Title>Hår</Header.Title>
-        <Header.Right>
+        </HeaderNavItem>
+        <HeaderTitle>Hår</HeaderTitle>
+        <HeaderNavItem>
           <FilterIcon />
-        </Header.Right>
+        </HeaderNavItem>
       </Header>
       <PriceFilter />
-      <SalonList>
+      <SalonsList>
         {salons.map((salon) => (
-          <SalonListItem salon={salon} key={salon.id} />
+          <SalonsListItem salon={salon} key={salon.id} />
         ))}
-      </SalonList>
+      </SalonsList>
     </div>
   );
 };
 
-export async function getServerSideProps(context) {
-  const res = await fetch(`http://localhost:3000/api/salons`);
-  const json = await res.json();
-
+export async function getStaticProps(context) {
+  // const res = await fetch(`http://localhost:3000/api/salons`);
+  // const json = await res.json();
   return {
     props: {
-      salons: json,
+      salons,
     },
   };
 }
 
-export default Salons;
+export default SalonsPage;

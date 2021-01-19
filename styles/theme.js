@@ -16,8 +16,8 @@ export const theme = {
     // rgba(255, 255, 255, 0.9)
   },
   fonts: {
-    primary: "MillerBanner, serif",
-    secondary: "HelveticaNeue, sans-serif",
+    heading: "MillerBanner, serif",
+    base: "HelveticaNeue, sans-serif",
   },
   typography: {
     large: "22px",
