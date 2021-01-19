@@ -13,23 +13,29 @@ const ListItem = ({ salon }) => {
       <Link href={`/salons/${salon.slug}`}>
         <a>
           <ListItemInner>
-            <div>
+            <ColLeft>
               <Paragraph>{salon.schedule}</Paragraph>
-            </div>
+            </ColLeft>
 
-            <div>
-              <Title size="medium">{salon.name}</Title>
+            <ColMiddle>
+              <Title size="medium" as="h2">
+                {salon.name}
+              </Title>
               <Rating
                 rating={salon.rating}
                 reviewsCount={salon.reviews_count}
               />
-              <Paragraph light>{salon.street}</Paragraph>
-            </div>
+              <Paragraph color="grayDark" weight="300">
+                {salon.street}
+              </Paragraph>
+            </ColMiddle>
 
-            <div>
-              <Paragraph light>{salon.cutting_price} kr</Paragraph>
-              <Paragraph size="small">{salon.cutting_time} min</Paragraph>
-            </div>
+            <ColRight>
+              <Paragraph>{salon.cutting_price} kr</Paragraph>
+              <Paragraph size="small" color="grayDark" weight="300">
+                {salon.cutting_time} min
+              </Paragraph>
+            </ColRight>
 
             <ListIcon>
               <ChevronRight />
@@ -45,40 +51,44 @@ export default ListItem;
 
 const StyledListItem = styled.li`
   position: relative;
-  margin: 0 ${(props) => props.theme.gutters.mobileX};
-  padding: ${(props) => props.theme.gutters.mobileX} 35px
-    ${(props) => props.theme.gutters.mobileX} 0;
   border-bottom: 1px solid ${(props) => props.theme.colors.border};
-
   a {
-    cursor: pointer;
+    display: block;
+    position: relative;
+    margin: 0 ${(props) => props.theme.gutters.mobileX};
+    padding: ${(props) => props.theme.gutters.mobileX} 35px
+      ${(props) => props.theme.gutters.mobileX} 0;
+    transition: opacity 0.3s;
+
+    &:hover {
+      opacity: 0.56;
+      transition: opacity 0.3s;
+    }
   }
 `;
 
 const ListItemInner = styled.div`
   display: flex;
   flex-direction: row;
+`;
 
-  > div {
-    &:nth-child(1) {
-      width: 68px;
-      p {
-        line-height: 24px;
-      }
-    }
-    &:nth-child(2) {
-      margin-right: auto;
-      div {
-        margin: 12px 0 13px;
-      }
-    }
-    &:nth-child(3) {
-      text-align: right;
-      p:first-child {
-        line-height: 24px;
-        margin-bottom: 10px;
-      }
-    }
+const ColLeft = styled.div`
+  width: 68px;
+  p {
+    line-height: 24px;
+  }
+`;
+const ColMiddle = styled.div`
+  margin-right: auto;
+  div {
+    margin: 12px 0 13px;
+  }
+`;
+const ColRight = styled.div`
+  text-align: right;
+  p:first-child {
+    line-height: 24px;
+    margin-bottom: 10px;
   }
 `;
 

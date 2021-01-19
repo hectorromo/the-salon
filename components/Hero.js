@@ -12,6 +12,7 @@ const Hero = ({ salon }) => {
         <Rating
           rating={salon.rating}
           reviewsCount={salon.reviews_count}
+          color="white"
           large
         />
       </GradientOverlay>

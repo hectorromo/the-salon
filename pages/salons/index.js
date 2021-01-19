@@ -21,7 +21,9 @@ const SalonsPage = ({ salons }) => {
           <FilterIcon />
         </HeaderNavItem>
       </Header>
+
       <PriceFilter />
+
       <SalonsList>
         {salons.map((salon) => (
           <SalonsListItem salon={salon} key={salon.id} />
@@ -32,8 +34,6 @@ const SalonsPage = ({ salons }) => {
 };
 
 export async function getStaticProps(context) {
-  // const res = await fetch(`http://localhost:3000/api/salons`);
-  // const json = await res.json();
   return {
     props: {
       salons,

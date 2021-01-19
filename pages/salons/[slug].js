@@ -1,10 +1,11 @@
-import { salons } from "salonData";
-
 import Link from "next/link";
 
-import ChevronLeft from "../../assets/icons/chevron-left-white.svg";
-import HeartIcon from "../../assets/icons/heart.svg";
+import { salons } from "salonData";
 
+import {
+  HeartIconInverted,
+  ChevronLeftInverted,
+} from "components/Header/HeaderIcons";
 import Header from "components/Header";
 import Hero from "components/Hero";
 import HeaderNavItem from "components/Header/HeaderNavItem";
@@ -19,11 +20,15 @@ const Salon = ({ salon }) => {
       <Header overlay={true}>
         <HeaderNavItem>
           <Link href="/salons">
-            <img src={ChevronLeft} alt="" />
+            <a>
+              <ChevronLeftInverted />
+            </a>
           </Link>
         </HeaderNavItem>
         <HeaderNavItem>
-          <HeartIcon />
+          <div>
+            <HeartIconInverted />
+          </div>
         </HeaderNavItem>
       </Header>
 

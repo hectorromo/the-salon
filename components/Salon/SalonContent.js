@@ -1,3 +1,4 @@
+import { Paragraph } from "components/typography/Paragraph";
 import styled from "styled-components";
 import { ClockIcon, GlobeIcon, PhoneIcon, PinIcon } from "./SalonIcons";
 
@@ -5,23 +6,35 @@ const SalonContent = ({ salon }) => {
   return (
     <SalonContentWrapper>
       <SalonDetail>
-        <PinIcon /> {salon.street}, {salon.postal_address}
+        <PinIcon />{" "}
+        <Paragraph weight="300">
+          {salon.street}, {salon.postal_address}
+        </Paragraph>
       </SalonDetail>
       <SalonDetail>
-        <ClockIcon /> Öppet till {salon.opening_hours.end} idag.
+        <ClockIcon />{" "}
+        <Paragraph weight="300">
+          Öppet till {salon.opening_hours.end} idag.
+        </Paragraph>
       </SalonDetail>
       <SalonDetail>
-        <PhoneIcon /> {salon.phone}
+        <PhoneIcon /> <Paragraph weight="300">{salon.phone}</Paragraph>
       </SalonDetail>
       <SalonDetail>
-        <GlobeIcon /> {salon.website}
+        <GlobeIcon /> <Paragraph weight="300">{salon.website}</Paragraph>
       </SalonDetail>
+      <SalonDescription>
+        <Paragraph weight="300">{salon.description}</Paragraph>
+      </SalonDescription>
     </SalonContentWrapper>
   );
 };
 
+export default SalonContent;
+
 const SalonContentWrapper = styled.div`
   padding: 0 ${(props) => props.theme.gutters.mobileX};
+  font-weight: 300;
 `;
 
 export const SalonDetail = styled.div`
@@ -35,4 +48,7 @@ export const SalonDetail = styled.div`
   }
 `;
 
-export default SalonContent;
+export const SalonDescription = styled.div`
+  padding: 20px 0;
+  color: ${(props) => props.theme.colors.paragraph};
+`;

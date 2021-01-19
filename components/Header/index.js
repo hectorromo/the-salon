@@ -11,6 +11,7 @@ const StyledHeader = styled.header`
   height: 60px;
   padding: 0 ${(props) => props.theme.gutters.mobileX};
   position: ${(props) => (props.overlay ? "absolute" : "relative")};
+  z-index: 1;
 `;
 
 const Header = ({ children, ...props }) => {

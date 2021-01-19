@@ -20,6 +20,7 @@ body {
   text-rendering: optimizeLegibility;
   box-sizing: border-box;
   font-family: "HelveticaNeue", sans-serif;
+  font-size: 15px;
   // margin: 0;
   // padding: 0;
 }
