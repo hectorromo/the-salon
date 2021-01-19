@@ -1,11 +1,27 @@
 import Link from "next/link";
 
+import ChevronLeft from "../../assets/icons/chevron-left-white.svg";
+import HeartIcon from "../../assets/icons/heart.svg";
+
+import Header from "components/Header";
+import Hero from "components/Hero";
+
 const Salon = ({ salon }) => {
   console.log("The salon", salon);
   return (
     <div>
-      <h1>{salon.name}</h1>
-      <Link href="/salons">Gå tillbaka</Link>
+      <Header overlay={true}>
+        <Header.Left>
+          <Link href="/salons">
+            <ChevronLeft />
+          </Link>
+        </Header.Left>
+        <Header.Right>
+          <HeartIcon />
+        </Header.Right>
+      </Header>
+
+      <Hero salon={salon} />
     </div>
   );
 };

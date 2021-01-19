@@ -1,17 +1,29 @@
-import Link from "next/link";
+import Header from "components/Header";
+import PriceFilter from "components/PriceFilter";
+import SalonList from "components/Salons/List";
+import SalonListItem from "components/Salons/ListItem";
+
+import ChevronLeft from "../../assets/icons/chevron-left.svg";
+import FilterIcon from "../../assets/icons/filter.svg";
 
 const Salons = ({ salons }) => {
-  console.log(salons);
   return (
     <div>
-      <h1>Salonger</h1>
-      <ul>
+      <Header>
+        <Header.Left>
+          <ChevronLeft />
+        </Header.Left>
+        <Header.Title>Hår</Header.Title>
+        <Header.Right>
+          <FilterIcon />
+        </Header.Right>
+      </Header>
+      <PriceFilter />
+      <SalonList>
         {salons.map((salon) => (
-          <li>
-            <Link href={`/salons/${salon.slug}`}>{salon.name}</Link>
-          </li>
+          <SalonListItem salon={salon} key={salon.id} />
         ))}
-      </ul>
+      </SalonList>
     </div>
   );
 };
