@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
 export default styled.div`
-  padding: ${(props) => props.theme.gutters.mobileXLarge};
+  padding: ${(props) => props.theme.gutters.mobileXNormal};
   text-align: center;
 `;

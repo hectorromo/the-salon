@@ -95,5 +95,5 @@ const PriceFilterContainer = styled.div`
 `;
 
 const ResetFilter = styled(ButtonUnstyled)`
-  margin-top: ${(props) => props.theme.gutters.mobileXLarge};
+  margin-top: ${(props) => props.theme.gutters.mobileXNormal};
 `;

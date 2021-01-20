@@ -28,6 +28,7 @@ export const theme = {
   },
   gutters: {
     mobileX: '15px',
-    mobileXLarge: '30px',
+    mobileXNormal: '30px',
+    mobileXLarge: '50px',
   },
 };
