@@ -9,12 +9,7 @@ const Hero = ({ salon }) => {
       <img src={salon.img_url} alt={salon.name} />
       <GradientOverlay>
         <Title size="large">{salon.name}</Title>
-        <Rating
-          rating={salon.rating}
-          reviewsCount={salon.reviews_count}
-          color="white"
-          large
-        />
+        <Rating rating={salon.rating} reviewsCount={salon.reviews_count} color="white" large />
       </GradientOverlay>
     </StyledDiv>
   );
@@ -42,7 +37,7 @@ const GradientOverlay = styled.div`
   z-index: 1;
   height: 125px;
   background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
-  padding: 24px ${(props) => props.theme.gutters.mobileX};
+  padding: 24px ${props => props.theme.gutters.mobileX};
   display: flex;
   justify-content: flex-end;
   flex-direction: column;

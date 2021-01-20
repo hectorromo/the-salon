@@ -1,8 +1,7 @@
 import styled, { css } from "styled-components";
 import { Paragraph } from "./typography/Paragraph";
 
-import FilledStar from "../assets/icons/star-filled.svg";
-import EmptyStar from "../assets/icons/star-empty.svg";
+import { StarFilledIcon, StarEmptyIcon } from "components/Icons";
 
 const Rating = ({ rating, reviewsCount, ...props }) => {
   const emptyStars = 5 - rating;
@@ -14,13 +13,10 @@ const Rating = ({ rating, reviewsCount, ...props }) => {
 
   return (
     <RatingWrapper {...props}>
-      {renderComponentsFromNumber(rating, FilledStar)}
-      {renderComponentsFromNumber(emptyStars, EmptyStar)}
+      {renderComponentsFromNumber(rating, StarFilledIcon)}
+      {renderComponentsFromNumber(emptyStars, StarEmptyIcon)}
 
-      <Paragraph
-        size={props.large ? "small" : "xSmall"}
-        color={props.color ? props.color : "grayDark"}
-      >
+      <Paragraph size={props.large ? "small" : "xSmall"} color={props.color ? props.color : "grayDark"}>
         ({reviewsCount})
       </Paragraph>
     </RatingWrapper>
@@ -41,7 +37,7 @@ const RatingWrapper = styled.div`
     margin-left: 4px;
   }
 
-  ${(props) =>
+  ${props =>
     props.large &&
     css`
       svg {

@@ -1,23 +1,17 @@
+import * as React from "react";
 import styled from "styled-components";
-import { Range } from "react-range";
 
-import { ButtonUnstyled } from "./ButtonUnstyled";
-
-import ChevronDown from "../assets/icons/chevron-down.svg";
-import { Paragraph } from "./typography/Paragraph";
 import usePriceFilter from "hooks/usePriceFilter";
+
+import { Paragraph } from "components/typography/Paragraph";
+import { ChevronDownIcon } from "components/Icons";
+import { ButtonUnstyled } from "components/ButtonUnstyled";
+import RangeSlider from "components/RangeSlider";
 
 const PriceFilter = ({ salons }) => {
   const [isOpen, setIsOpen] = React.useState(true);
   // const [values, setValues] = React.useState([0, 100]);
-  const {
-    values,
-    setValues,
-    minPrice,
-    maxPrice,
-    isFiltered,
-    filteredSalons,
-  } = usePriceFilter(salons);
+  const { values, setValues, minPrice, maxPrice, isFiltered, filteredSalons } = usePriceFilter(salons);
 
   console.log("minprice", minPrice, maxPrice);
   React.useEffect(() => {
@@ -29,46 +23,18 @@ const PriceFilter = ({ salons }) => {
 
   return (
     <PriceFilterWrapper>
-      <Paragraph weight={300}>Pris 250 - 500 kr</Paragraph>
+      <Paragraph weight={300}>
+        Pris {minPrice} - {maxPrice} kr
+      </Paragraph>
       <ButtonUnstyled>
-        <ChevronDown />
+        <ChevronDownIcon />
       </ButtonUnstyled>
       {isOpen && (
         <PriceFilterContainer>
           <div>
             {values[0]} - {values[1]} kr
           </div>
-          <Range
-            step={10}
-            min={minPrice}
-            max={maxPrice}
-            values={values}
-            onChange={(values) => setValues(values)}
-            renderTrack={({ props, children }) => (
-              <div
-                {...props}
-                style={{
-                  ...props.style,
-                  height: "6px",
-                  width: "100%",
-                  backgroundColor: "#ccc",
-                }}
-              >
-                {children}
-              </div>
-            )}
-            renderThumb={({ props }) => (
-              <div
-                {...props}
-                style={{
-                  ...props.style,
-                  height: "20px",
-                  width: "20px",
-                  backgroundColor: "#999",
-                }}
-              />
-            )}
-          />
+          <RangeSlider min={minPrice} max={maxPrice} values={values} onChange={setValues} />
         </PriceFilterContainer>
       )}
     </PriceFilterWrapper>
@@ -78,21 +44,26 @@ const PriceFilter = ({ salons }) => {
 export default PriceFilter;
 
 const PriceFilterWrapper = styled.div`
-  border-bottom: 1px solid ${(props) => props.theme.colors.primary};
-  padding: ${(props) => props.theme.gutters.mobileX};
+  border-bottom: 1px solid ${props => props.theme.colors.primary};
+  padding: ${props => props.theme.gutters.mobileX};
   display: flex;
   justify-content: space-between;
   position: relative;
 `;
 
 const PriceFilterContainer = styled.div`
-  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
   position: absolute;
   bottom: 0;
   z-index: 10;
   top: 100%;
-  background: orange;
+  background: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
   width: 100%;
   left: 0;
-  padding: ${(props) => props.theme.gutters.mobileX};
+  padding: ${props => props.theme.gutters.mobileX} ${props => props.theme.gutters.mobileXLarge};
 `;

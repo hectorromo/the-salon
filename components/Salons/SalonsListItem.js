@@ -21,10 +21,7 @@ const ListItem = ({ salon }) => {
               <Title size="medium" as="h2">
                 {salon.name}
               </Title>
-              <Rating
-                rating={salon.rating}
-                reviewsCount={salon.reviews_count}
-              />
+              <Rating rating={salon.rating} reviewsCount={salon.reviews_count} />
               <Paragraph color="grayDark" weight="300">
                 {salon.street}
               </Paragraph>
@@ -51,13 +48,12 @@ export default ListItem;
 
 const StyledListItem = styled.li`
   position: relative;
-  border-bottom: 1px solid ${(props) => props.theme.colors.border};
+  border-bottom: 1px solid ${props => props.theme.colors.border};
   a {
     display: block;
     position: relative;
-    margin: 0 ${(props) => props.theme.gutters.mobileX};
-    padding: ${(props) => props.theme.gutters.mobileX} 35px
-      ${(props) => props.theme.gutters.mobileX} 0;
+    margin: 0 ${props => props.theme.gutters.mobileX};
+    padding: ${props => props.theme.gutters.mobileX} 35px ${props => props.theme.gutters.mobileX} 0;
     transition: opacity 0.3s;
 
     &:hover {

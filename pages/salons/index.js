@@ -25,7 +25,7 @@ const SalonsPage = ({ salons }) => {
       <PriceFilter salons={salons} />
 
       <SalonsList>
-        {salons.map((salon) => (
+        {salons.map(salon => (
           <SalonsListItem salon={salon} key={salon.id} />
         ))}
       </SalonsList>

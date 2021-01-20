@@ -28,5 +28,6 @@ export const theme = {
   },
   gutters: {
     mobileX: "15px",
+    mobileXLarge: "30px",
   },
 };

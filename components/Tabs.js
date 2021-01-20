@@ -14,7 +14,7 @@ export default Tabs;
 const TabWrapper = styled.div`
   background-color: white;
   display: flex;
-  border-bottom: 1px solid ${(props) => props.theme.colors.border};
+  border-bottom: 1px solid ${props => props.theme.colors.border};
 `;
 const Tab = styled.a`
   cursor: pointer;
@@ -23,7 +23,7 @@ const Tab = styled.a`
   text-align: center;
   position: relative;
 
-  ${(props) =>
+  ${props =>
     props.active &&
     css`
       &::before {
@@ -33,7 +33,7 @@ const Tab = styled.a`
         content: "";
         width: 100%;
         height: 2px;
-        background-color: ${(props) => props.theme.colors.primary};
+        background-color: ${props => props.theme.colors.primary};
       }
     `}
 `;

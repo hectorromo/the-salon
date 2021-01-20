@@ -1,10 +1,7 @@
 import Link from "next/link";
 
 import { salons } from "salonData";
-import {
-  HeartIconInverted,
-  ChevronLeftInverted,
-} from "components/Header/HeaderIcons";
+import { HeartIconInverted, ChevronLeftInverted } from "components/Header/HeaderIcons";
 
 import Header from "components/Header";
 import Hero from "components/Hero";
@@ -39,11 +36,11 @@ const Salon = ({ salon }) => {
 };
 
 const SalonWrapper = styled.div`
-  background-color: ${(props) => props.theme.colors.background};
+  background-color: ${props => props.theme.colors.background};
 `;
 
 export async function getStaticPaths() {
-  const paths = salons.map((salon) => ({
+  const paths = salons.map(salon => ({
     params: {
       slug: salon.slug,
     },
@@ -56,7 +53,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const salon = salons.filter((salon) => salon.slug === params.slug);
+  const salon = salons.filter(salon => salon.slug === params.slug);
 
   if (!salon.length) {
     return {

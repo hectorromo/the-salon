@@ -7,10 +7,21 @@ export default function usePriceFilter(salons) {
   const [filteredSalons, setFilteredSalons] = React.useState([]);
   const [values, setValues] = React.useState([0, 100]);
 
+  // Handles the value from range-slider
   React.useEffect(() => {
     if (!salons && !salons.length) return;
 
-    console.log("asdfköldj");
+    const filtered = salons.filter(salon => salon.cutting_price >= values[0] && salon.cutting_price <= values[1]);
+
+    setFilteredSalons(filtered);
+
+    const isFiltering = filtered.length < salons.length;
+    setIsFiltered(isFiltering);
+  }, [values, salons]);
+
+  // Get min and max price from available salons.
+  React.useEffect(() => {
+    if (!salons && !salons.length) return;
 
     const max = getMaxPrice(salons);
     const min = getMinPrice(salons);
@@ -19,41 +30,16 @@ export default function usePriceFilter(salons) {
     setMaxPrice(max);
   }, [salons]);
 
-  React.useEffect(() => {
-    if (!salons && !salons.length) return;
+  const getMinPrice = salons => {
+    const values = salons.map(salon => salon.cutting_price);
 
-    const filtered = salons.filter(
-      (salon) =>
-        salon.cutting_price >= values[0] && salon.cutting_price <= values[1]
-    );
-
-    setFilteredSalons(filtered);
-  }, [values, salons]);
-
-  const getMinPrice = (salons) => {
-    const values = salons.map((salon) => salon.cutting_price);
     return Math.min.apply(null, values);
-    // const lowestPrice = salons.reduce((lowestPrice, salon) => {
-    //   return salon.cutting_price < lowestPrice.cutting_price
-    //     ? salon
-    //     : lowestPrice;
-    // }, salon[0]);
-
-    // console.log("LOWEst", lowestPrice);
-    // return lowestPrice;
   };
 
-  const getMaxPrice = (salons) => {
-    const values = salons.map((salon) => salon.cutting_price);
-    return Math.max.apply(null, values);
-    // const highestPrice = salons.reduce((highestPrice, salon) => {
-    //   return salon.cutting_price > highestPrice.cutting_price
-    //     ? salon
-    //     : highestPrice;
-    // }, salon[0]);
+  const getMaxPrice = salons => {
+    const values = salons.map(salon => salon.cutting_price);
 
-    // console.log("Highest", highestPrice);
-    // return highestPrice;
+    return Math.max.apply(null, values);
   };
 
   return {
