@@ -36,6 +36,7 @@ $ yarn dev
 
 Access [http://localhost:3000](http://localhost:3000) and you'll see the app running.
 
+
 # Production build
 Follow the installation steps above. Instead of running developement server type this.
 
@@ -50,3 +51,5 @@ Start app in production mode:
 ```sh
 $ yarn start
 ```
+
+Access [http://localhost:3000](http://localhost:3000) and you'll see the app running.
