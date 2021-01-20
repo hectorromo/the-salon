@@ -1,15 +1,15 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { ClockIcon, GlobeIcon, PhoneIcon, PinIcon } from "./SalonIcons";
+import { ClockIcon, GlobeIcon, PhoneIcon, PinIcon } from './SalonIcons';
 
-import { ChevronDownIcon } from "components/Icons";
-import { Paragraph } from "components/typography/Paragraph";
+import { ChevronDownIcon } from 'components/Icons';
+import { Paragraph } from 'components/typography/Paragraph';
 
 const SalonContent = ({ salon }) => {
   return (
     <SalonContentWrapper>
       <SalonDetail>
-        <PinIcon />{" "}
+        <PinIcon />{' '}
         <Paragraph weight="300">
           {salon.street}, {salon.postal_address}
         </Paragraph>
@@ -37,7 +37,7 @@ export default SalonContent;
 
 const SalonContentWrapper = styled.div`
   margin-top: 20px;
-  padding: 0 ${props => props.theme.gutters.mobileX};
+  padding: 0 ${(props) => props.theme.gutters.mobileX};
   font-weight: 300;
   background-color: white;
 `;
@@ -45,8 +45,8 @@ const SalonContentWrapper = styled.div`
 export const SalonDetail = styled.div`
   display: flex;
   align-items: center;
-  border-bottom: 1px solid ${p => p.theme.colors.border};
-  padding: ${p => p.theme.gutters.mobileX} 0;
+  border-bottom: 1px solid ${(p) => p.theme.colors.border};
+  padding: ${(p) => p.theme.gutters.mobileX} 0;
 
   svg {
     margin-right: 10px;
@@ -60,5 +60,5 @@ export const SalonDetail = styled.div`
 
 export const SalonDescription = styled.div`
   padding: 20px 0;
-  color: ${props => props.theme.colors.paragraph};
+  color: ${(props) => props.theme.colors.paragraph};
 `;

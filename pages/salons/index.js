@@ -1,15 +1,22 @@
-import { salons } from "salonData";
+import { useState } from 'react';
+import { salons } from 'salonData';
 
-import Header from "components/Header";
-import HeaderNavItem from "components/Header/HeaderNavItem";
-import HeaderTitle from "components/Header/HeaderTitle";
-import PriceFilter from "components/PriceFilter";
-import SalonsList from "components/Salons/SalonsList";
-import SalonsListItem from "components/Salons/SalonsListItem";
-
-import { ChevronLeft, FilterIcon } from "components/Header/HeaderIcons";
+import { ChevronLeft, FilterIcon } from 'components/Header/HeaderIcons';
+import Header from 'components/Header';
+import HeaderNavItem from 'components/Header/HeaderNavItem';
+import HeaderTitle from 'components/Header/HeaderTitle';
+import PriceFilter from 'components/PriceFilter';
+import SalonsList from 'components/Salons/SalonsList';
+import SalonsListItem from 'components/Salons/SalonsListItem';
+import SalonsListEmpty from 'components/Salons/SalonsListEmpty';
 
 const SalonsPage = ({ salons }) => {
+  const [salonList, setSalonList] = useState([]);
+
+  const filterSalons = (filteredSalons) => {
+    setSalonList(filteredSalons);
+  };
+
   return (
     <div>
       <Header>
@@ -22,12 +29,13 @@ const SalonsPage = ({ salons }) => {
         </HeaderNavItem>
       </Header>
 
-      <PriceFilter salons={salons} />
+      <PriceFilter salons={salons} onFilter={filterSalons} />
 
       <SalonsList>
-        {salons.map(salon => (
+        {salonList.map((salon) => (
           <SalonsListItem salon={salon} key={salon.id} />
         ))}
+        {!salonList.length && <SalonsListEmpty>Inga salonger hittades.</SalonsListEmpty>}
       </SalonsList>
     </div>
   );

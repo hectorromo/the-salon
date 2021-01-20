@@ -1,6 +1,6 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-import { Button } from "components/Button";
+import { Button } from 'components/Button';
 
 const Home = () => (
   <div>

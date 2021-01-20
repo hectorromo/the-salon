@@ -1,4 +1,4 @@
-import Svg from "components/Svg";
+import Svg from 'components/Svg';
 
 export const FilterIcon = () => (
   <Svg xmlns="http://www.w3.org/2000/svg" width="19" height="18" viewBox="0 0 19 18">
@@ -24,15 +24,33 @@ export const HeartIconInverted = () => (
 );
 
 export const ChevronLeftInverted = () => (
-  <Svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="18" height="27" viewBox="0 0 18 27">
+  <Svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlnsXlink="http://www.w3.org/1999/xlink"
+    width="18"
+    height="27"
+    viewBox="0 0 18 27"
+  >
     <defs>
       <path id="b" d="M24.143 51.385L15 42.143 24.143 33" />
-      <filter id="a" width="264.1%" height="181.6%" x="-82%" y="-29.9%" filterUnits="objectBoundingBox">
+      <filter
+        id="a"
+        width="264.1%"
+        height="181.6%"
+        x="-82%"
+        y="-29.9%"
+        filterUnits="objectBoundingBox"
+      >
         <feMorphology in="SourceAlpha" operator="dilate" radius=".5" result="shadowSpreadOuter1" />
         <feOffset dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1" />
         <feMorphology in="SourceAlpha" radius="1" result="shadowInner" />
         <feOffset dy="2" in="shadowInner" result="shadowInner" />
-        <feComposite in="shadowOffsetOuter1" in2="shadowInner" operator="out" result="shadowOffsetOuter1" />
+        <feComposite
+          in="shadowOffsetOuter1"
+          in2="shadowInner"
+          operator="out"
+          result="shadowOffsetOuter1"
+        />
         <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2" />
         <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0" />
       </filter>

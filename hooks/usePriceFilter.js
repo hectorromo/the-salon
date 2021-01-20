@@ -1,17 +1,23 @@
-import * as React from "react";
+import { useState, useEffect } from 'react';
 
 export default function usePriceFilter(salons) {
-  const [minPrice, setMinPrice] = React.useState(0);
-  const [maxPrice, setMaxPrice] = React.useState(100);
-  const [isFiltered, setIsFiltered] = React.useState(false);
-  const [filteredSalons, setFilteredSalons] = React.useState([]);
-  const [values, setValues] = React.useState([0, 100]);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(100);
+  const [isFiltered, setIsFiltered] = useState(false);
+  const [filteredSalons, setFilteredSalons] = useState([]);
+  const [values, setValues] = useState([0, 100]);
+
+  useEffect(() => {
+    setValues([minPrice, maxPrice]);
+  }, [minPrice, maxPrice]);
 
   // Handles the value from range-slider
-  React.useEffect(() => {
+  useEffect(() => {
     if (!salons && !salons.length) return;
 
-    const filtered = salons.filter(salon => salon.cutting_price >= values[0] && salon.cutting_price <= values[1]);
+    const filtered = salons.filter(
+      (salon) => salon.cutting_price >= values[0] && salon.cutting_price <= values[1],
+    );
 
     setFilteredSalons(filtered);
 
@@ -20,7 +26,7 @@ export default function usePriceFilter(salons) {
   }, [values, salons]);
 
   // Get min and max price from available salons.
-  React.useEffect(() => {
+  useEffect(() => {
     if (!salons && !salons.length) return;
 
     const max = getMaxPrice(salons);
@@ -30,14 +36,14 @@ export default function usePriceFilter(salons) {
     setMaxPrice(max);
   }, [salons]);
 
-  const getMinPrice = salons => {
-    const values = salons.map(salon => salon.cutting_price);
+  const getMinPrice = (salons) => {
+    const values = salons.map((salon) => salon.cutting_price);
 
     return Math.min.apply(null, values);
   };
 
-  const getMaxPrice = salons => {
-    const values = salons.map(salon => salon.cutting_price);
+  const getMaxPrice = (salons) => {
+    const values = salons.map((salon) => salon.cutting_price);
 
     return Math.max.apply(null, values);
   };

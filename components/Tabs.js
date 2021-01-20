@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 const Tabs = () => {
   return (
@@ -14,26 +14,27 @@ export default Tabs;
 const TabWrapper = styled.div`
   background-color: white;
   display: flex;
-  border-bottom: 1px solid ${props => props.theme.colors.border};
 `;
+
 const Tab = styled.a`
   cursor: pointer;
   padding: 16px 0;
   width: 50%;
   text-align: center;
   position: relative;
+  border-bottom: 1px solid ${(props) => props.theme.colors.border};
 
-  ${props =>
+  ${(props) =>
     props.active &&
     css`
       &::before {
         position: absolute;
         left: 0;
         bottom: -1px;
-        content: "";
+        content: '';
         width: 100%;
         height: 2px;
-        background-color: ${props => props.theme.colors.primary};
+        background-color: ${(props) => props.theme.colors.primary};
       }
     `}
 `;

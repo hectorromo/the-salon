@@ -1,11 +1,11 @@
-import Link from "next/link";
-import styled from "styled-components";
+import Link from 'next/link';
+import styled from 'styled-components';
 
-import { ChevronRightIcon } from "components/Icons";
+import { ChevronRightIcon } from 'components/Icons';
 
-import Rating from "components/Rating";
-import { Paragraph } from "components/typography/Paragraph";
-import { Title } from "components/typography/Title";
+import Rating from 'components/Rating';
+import { Paragraph } from 'components/typography/Paragraph';
+import { Title } from 'components/typography/Title';
 
 const ListItem = ({ salon }) => {
   return (
@@ -48,12 +48,13 @@ export default ListItem;
 
 const StyledListItem = styled.li`
   position: relative;
-  border-bottom: 1px solid ${props => props.theme.colors.border};
+  border-bottom: 1px solid ${(props) => props.theme.colors.border};
   a {
     display: block;
     position: relative;
-    margin: 0 ${props => props.theme.gutters.mobileX};
-    padding: ${props => props.theme.gutters.mobileX} 35px ${props => props.theme.gutters.mobileX} 0;
+    margin: 0 ${(props) => props.theme.gutters.mobileX};
+    padding: ${(props) => props.theme.gutters.mobileX} 35px
+      ${(props) => props.theme.gutters.mobileX} 0;
     transition: opacity 0.3s;
 
     &:hover {

@@ -1,40 +1,38 @@
-import * as React from "react";
-import styled from "styled-components";
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
-import usePriceFilter from "hooks/usePriceFilter";
+import usePriceFilter from 'hooks/usePriceFilter';
 
-import { Paragraph } from "components/typography/Paragraph";
-import { ChevronDownIcon } from "components/Icons";
-import { ButtonUnstyled } from "components/ButtonUnstyled";
-import RangeSlider from "components/RangeSlider";
+import { Paragraph } from 'components/typography/Paragraph';
+import { ChevronDownIcon } from 'components/Icons';
+import { ButtonUnstyled } from 'components/ButtonUnstyled';
+import RangeSlider from 'components/RangeSlider';
 
-const PriceFilter = ({ salons }) => {
-  const [isOpen, setIsOpen] = React.useState(true);
-  // const [values, setValues] = React.useState([0, 100]);
-  const { values, setValues, minPrice, maxPrice, isFiltered, filteredSalons } = usePriceFilter(salons);
+const PriceFilter = ({ salons, onFilter }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const { values, setValues, minPrice, maxPrice, isFiltered, filteredSalons } = usePriceFilter(
+    salons,
+  );
 
-  console.log("minprice", minPrice, maxPrice);
-  React.useEffect(() => {
-    if (isFiltered) return;
-    setValues([minPrice, maxPrice]);
-  }, [minPrice, maxPrice, isFiltered]);
-
-  console.log(values, filteredSalons);
+  useEffect(() => {
+    const returnedSalons = isFiltered ? filteredSalons : salons;
+    onFilter(returnedSalons);
+  }, [isFiltered, filteredSalons, salons, onFilter]);
 
   return (
     <PriceFilterWrapper>
       <Paragraph weight={300}>
-        Pris {minPrice} - {maxPrice} kr
+        Pris {values[0]} - {values[1]} kr
       </Paragraph>
-      <ButtonUnstyled>
+      <ToggleFilterButton isOpen={isOpen} onClick={() => setIsOpen((val) => !val)}>
         <ChevronDownIcon />
-      </ButtonUnstyled>
+      </ToggleFilterButton>
       {isOpen && (
         <PriceFilterContainer>
-          <div>
-            {values[0]} - {values[1]} kr
-          </div>
           <RangeSlider min={minPrice} max={maxPrice} values={values} onChange={setValues} />
+          <ResetFilter onClick={() => setValues([minPrice, maxPrice])}>
+            Återställ filter
+          </ResetFilter>
         </PriceFilterContainer>
       )}
     </PriceFilterWrapper>
@@ -44,19 +42,24 @@ const PriceFilter = ({ salons }) => {
 export default PriceFilter;
 
 const PriceFilterWrapper = styled.div`
-  border-bottom: 1px solid ${props => props.theme.colors.primary};
-  padding: ${props => props.theme.gutters.mobileX};
+  border-bottom: 1px solid ${(props) => props.theme.colors.primary};
+  padding: ${(props) => props.theme.gutters.mobileX};
   display: flex;
   justify-content: space-between;
   position: relative;
 `;
 
+const ToggleFilterButton = styled(ButtonUnstyled)`
+  transform: rotate(${(props) => (props.isOpen ? '180deg' : '0')});
+`;
+
 const PriceFilterContainer = styled.div`
+  text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  height: 100px;
+  height: 110px;
   position: absolute;
   bottom: 0;
   z-index: 10;
@@ -65,5 +68,9 @@ const PriceFilterContainer = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
   width: 100%;
   left: 0;
-  padding: ${props => props.theme.gutters.mobileX} ${props => props.theme.gutters.mobileXLarge};
+  padding: ${(props) => props.theme.gutters.mobileX} ${(props) => props.theme.gutters.mobileXLarge};
+`;
+
+const ResetFilter = styled(ButtonUnstyled)`
+  margin-top: ${(props) => props.theme.gutters.mobileXLarge};
 `;

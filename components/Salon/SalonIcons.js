@@ -1,4 +1,4 @@
-import Svg from "components/Svg";
+import Svg from 'components/Svg';
 
 export const PhoneIcon = () => (
   <Svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
@@ -6,7 +6,7 @@ export const PhoneIcon = () => (
       fill="none"
       fillRule="evenodd"
       stroke="#202020"
-      stroke-width=".5"
+      strokeWidth=".5"
       d="M8.599 9.465c-.16.013-.307-.067-.454-.147a9.357 9.357 0 0 1-3.297-3.244c-.147-.227-.28-.494-.227-.76.094-.508.734-.708.921-1.189.174-.414-.053-.88-.32-1.241A5.718 5.718 0 0 0 3.58 1.375c-.307-.186-.64-.347-1.001-.373C.964.922.87 3.618 1.084 4.672c.227 1.095.774 2.11 1.415 3.03 1.508 2.19 3.577 4.045 6.087 4.926.88.307 1.828.494 2.736.28.454-.106.881-.307 1.201-.654.32-.334.494-.814.414-1.268-.08-.467-.4-.84-.72-1.174a9.526 9.526 0 0 0-1.549-1.282c-.107-.067-.214-.133-.334-.147-.133-.013-.253.054-.374.12-.333.187-.64.414-.907.668-.12.12-.254.24-.414.267-.013.013-.027.027-.04.027"
     />
   </Svg>
@@ -14,7 +14,7 @@ export const PhoneIcon = () => (
 
 export const PinIcon = () => (
   <Svg xmlns="http://www.w3.org/2000/svg" width="10" height="15" viewBox="0 0 10 15">
-    <g fill="none" fillRule="evenodd" stroke="#202020" stroke-width=".5">
+    <g fill="none" fillRule="evenodd" stroke="#202020" strokeWidth=".5">
       <path d="M4.767 2.869c-1.025 0-1.856.817-1.856 1.825 0 1.007.831 1.824 1.856 1.824 1.024 0 1.855-.817 1.855-1.824 0-1.008-.83-1.825-1.855-1.825z" />
       <path d="M9.158 4.693c0-2.385-1.966-4.318-4.39-4.318C2.341.375.374 2.308.374 4.693s4.392 9.67 4.392 9.67 4.391-7.285 4.391-9.67z" />
     </g>
@@ -22,7 +22,13 @@ export const PinIcon = () => (
 );
 
 export const ClockIcon = () => (
-  <Svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="14" height="14" viewBox="0 0 14 14">
+  <Svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlnsXlink="http://www.w3.org/1999/xlink"
+    width="14"
+    height="14"
+    viewBox="0 0 14 14"
+  >
     <defs>
       <path
         id="a"
@@ -34,18 +40,29 @@ export const ClockIcon = () => (
         <mask id="b" fill="#fff">
           <use xlinkHref="#a" />
         </mask>
-        <path stroke="#202020" stroke-width=".5" d="M-15.804 304.018h401.786v-714.643H-15.804z" mask="url(#b)" />
+        <path
+          stroke="#202020"
+          strokeWidth=".5"
+          d="M-15.804 304.018h401.786v-714.643H-15.804z"
+          mask="url(#b)"
+        />
       </g>
-      <g stroke="#202020" stroke-width=".5">
+      <g stroke="#202020" strokeWidth=".5">
         <path d="M6.696.34A6.434 6.434 0 0 0 .268 6.767a6.435 6.435 0 0 0 6.428 6.428 6.435 6.435 0 0 0 6.429-6.428A6.434 6.434 0 0 0 6.696.339" />
-        <path stroke-linecap="round" d="M6.696 6.768V2.679M9.273 9.344L6.696 6.768" />
+        <path strokeLinecap="round" d="M6.696 6.768V2.679M9.273 9.344L6.696 6.768" />
       </g>
     </g>
   </Svg>
 );
 
 export const GlobeIcon = () => (
-  <Svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="15" height="15" viewBox="0 0 15 15">
+  <Svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlnsXlink="http://www.w3.org/1999/xlink"
+    width="15"
+    height="15"
+    viewBox="0 0 15 15"
+  >
     <defs>
       <path id="a" d="M7.5 15H0V0h15v15H7.5z" />
     </defs>

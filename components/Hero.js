@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import Rating from "./Rating";
-import { Title } from "./typography/Title";
+import Rating from './Rating';
+import { Title } from './typography/Title';
 
 const Hero = ({ salon }) => {
   return (
@@ -37,7 +37,7 @@ const GradientOverlay = styled.div`
   z-index: 1;
   height: 125px;
   background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
-  padding: 24px ${props => props.theme.gutters.mobileX};
+  padding: 24px ${(props) => props.theme.gutters.mobileX};
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
