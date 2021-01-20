@@ -22,7 +22,7 @@ const SalonsPage = ({ salons }) => {
         </HeaderNavItem>
       </Header>
 
-      <PriceFilter />
+      <PriceFilter salons={salons} />
 
       <SalonsList>
         {salons.map((salon) => (

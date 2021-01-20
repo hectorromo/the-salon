@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledHeader = styled.header`
+const Header = styled.header`
   text-align: center;
   display: flex;
   width: 100%;
@@ -13,9 +13,5 @@ const StyledHeader = styled.header`
   position: ${(props) => (props.overlay ? "absolute" : "relative")};
   z-index: 1;
 `;
-
-const Header = ({ children, ...props }) => {
-  return <StyledHeader {...props}>{children}</StyledHeader>;
-};
 
 export default Header;

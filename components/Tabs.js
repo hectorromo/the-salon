@@ -14,7 +14,6 @@ export default Tabs;
 const TabWrapper = styled.div`
   background-color: white;
   display: flex;
-  margin-bottom: 10px;
   border-bottom: 1px solid ${(props) => props.theme.colors.border};
 `;
 const Tab = styled.a`

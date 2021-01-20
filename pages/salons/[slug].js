@@ -1,22 +1,23 @@
 import Link from "next/link";
 
 import { salons } from "salonData";
-
 import {
   HeartIconInverted,
   ChevronLeftInverted,
 } from "components/Header/HeaderIcons";
+
 import Header from "components/Header";
 import Hero from "components/Hero";
 import HeaderNavItem from "components/Header/HeaderNavItem";
 import SalonContent from "components/Salon/SalonContent";
 import Tabs from "components/Tabs";
+import styled from "styled-components";
 
 const Salon = ({ salon }) => {
   if (!salon) return null;
 
   return (
-    <div>
+    <SalonWrapper>
       <Header overlay={true}>
         <HeaderNavItem>
           <Link href="/salons">
@@ -26,18 +27,20 @@ const Salon = ({ salon }) => {
           </Link>
         </HeaderNavItem>
         <HeaderNavItem>
-          <div>
-            <HeartIconInverted />
-          </div>
+          <HeartIconInverted />
         </HeaderNavItem>
       </Header>
 
       <Hero salon={salon} />
       <Tabs />
       <SalonContent salon={salon} />
-    </div>
+    </SalonWrapper>
   );
 };
+
+const SalonWrapper = styled.div`
+  background-color: ${(props) => props.theme.colors.background};
+`;
 
 export async function getStaticPaths() {
   const paths = salons.map((salon) => ({

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 
-import { ChevronRight } from "../../assets/icons/chevron-right.svg";
+import { ChevronRightIcon } from "components/Icons";
 
 import Rating from "components/Rating";
 import { Paragraph } from "components/typography/Paragraph";
@@ -38,7 +38,7 @@ const ListItem = ({ salon }) => {
             </ColRight>
 
             <ListIcon>
-              <ChevronRight />
+              <ChevronRightIcon />
             </ListIcon>
           </ListItemInner>
         </a>
