@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 
 import usePriceFilter from 'hooks/usePriceFilter';
+import useVisible from 'hooks/useVisible';
 
 import { Paragraph } from 'components/typography/Paragraph';
 import { ChevronDownIcon } from 'components/Icons';
@@ -9,30 +10,38 @@ import { ButtonUnstyled } from 'components/ButtonUnstyled';
 import RangeSlider from 'components/RangeSlider';
 
 const PriceFilter = ({ salons, onFilter }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { ref, isVisible, setIsVisible } = useVisible(false);
   const { values, setValues, minPrice, maxPrice, isFiltered, filteredSalons } = usePriceFilter(
     salons,
   );
 
   useEffect(() => {
+    if (!filteredSalons.length && !isFiltered) return;
+
     const returnedSalons = isFiltered ? filteredSalons : salons;
     onFilter(returnedSalons);
-  }, [isFiltered, filteredSalons, salons, onFilter]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isFiltered, filteredSalons]);
+
+  const resetFilter = () => {
+    setValues([minPrice, maxPrice]);
+  };
 
   return (
-    <PriceFilterWrapper>
-      <Paragraph weight={300}>
-        Pris {values[0]} - {values[1]} kr
-      </Paragraph>
-      <ToggleFilterButton isOpen={isOpen} onClick={() => setIsOpen((val) => !val)}>
-        <ChevronDownIcon />
+    <PriceFilterWrapper isFiltered={isFiltered} ref={ref}>
+      <ToggleFilterButton isVisible={isVisible} onClick={() => setIsVisible((val) => !val)}>
+        <Paragraph weight={300}>
+          Pris {values[0]} - {values[1]} kr
+        </Paragraph>
+
+        <FilterChevron isVisible={isVisible}>
+          <ChevronDownIcon />
+        </FilterChevron>
       </ToggleFilterButton>
-      {isOpen && (
+      {isVisible && (
         <PriceFilterContainer>
           <RangeSlider min={minPrice} max={maxPrice} values={values} onChange={setValues} />
-          <ResetFilter onClick={() => setValues([minPrice, maxPrice])}>
-            Återställ filter
-          </ResetFilter>
+          <ResetFilter onClick={resetFilter}>Rensa filter</ResetFilter>
         </PriceFilterContainer>
       )}
     </PriceFilterWrapper>
@@ -42,15 +51,29 @@ const PriceFilter = ({ salons, onFilter }) => {
 export default PriceFilter;
 
 const PriceFilterWrapper = styled.div`
+  background-color: ${(props) => (props.isFiltered ? 'rgba(182, 159, 88, 0.1)' : 'white')};
   border-bottom: 1px solid ${(props) => props.theme.colors.primary};
-  padding: ${(props) => props.theme.gutters.mobileX};
-  display: flex;
-  justify-content: space-between;
   position: relative;
 `;
 
-const ToggleFilterButton = styled(ButtonUnstyled)`
-  transform: rotate(${(props) => (props.isOpen ? '180deg' : '0')});
+const ToggleFilterButton = styled.button`
+  width: 100%;
+  position: relative;
+  background-color: transparent;
+  padding: ${(props) => props.theme.gutters.mobileX};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+`;
+
+const FilterChevron = styled.span`
+  transform: rotate(${(props) => (props.isVisible ? '180deg' : '0')});
+  padding: 2px 7px;
+  margin-right: -7px;
+  transition: all 0.3s;
 `;
 
 const PriceFilterContainer = styled.div`

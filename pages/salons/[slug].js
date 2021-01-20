@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
+import Head from 'next/head';
 import Link from 'next/link';
 import { salons } from 'salonData';
-import { HeartIconInverted, ChevronLeftInverted } from 'components/Header/HeaderIcons';
+import { HeartIconInverted, ChevronLeftInverted } from 'components/Icons';
 
 import Header from 'components/Header';
 import Hero from 'components/Hero';
@@ -10,29 +10,32 @@ import SalonContent from 'components/Salon/SalonContent';
 import Tabs from 'components/Tabs';
 import styled from 'styled-components';
 
-const Salon = ({ salon }) => (
-  <SalonWrapper>
-    <Header overlay={true}>
-      <HeaderNavItem>
-        <Link href="/salons">
-          <a>
-            <ChevronLeftInverted />
-          </a>
-        </Link>
-      </HeaderNavItem>
-      <HeaderNavItem>
-        <HeartIconInverted />
-      </HeaderNavItem>
-    </Header>
+const Salon = ({ salon }) => {
+  if (!salon) return null;
 
-    <Hero salon={salon} />
-    <Tabs />
-    <SalonContent salon={salon} />
-  </SalonWrapper>
-);
+  return (
+    <SalonWrapper>
+      <Head>
+        <title>{salon.name} | The Salon</title>
+      </Head>
+      <Header overlay={true}>
+        <HeaderNavItem>
+          <Link href="/salons">
+            <a>
+              <ChevronLeftInverted />
+            </a>
+          </Link>
+        </HeaderNavItem>
+        <HeaderNavItem>
+          <HeartIconInverted />
+        </HeaderNavItem>
+      </Header>
 
-Salon.propTypes = {
-  salon: PropTypes.object,
+      <Hero salon={salon} />
+      <Tabs />
+      <SalonContent salon={salon} />
+    </SalonWrapper>
+  );
 };
 
 const SalonWrapper = styled.div`

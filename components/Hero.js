@@ -1,23 +1,23 @@
 import styled from 'styled-components';
 
-import Rating from './Rating';
-import { Title } from './typography/Title';
+import Rating from 'components/Rating';
+import { Title } from 'components/typography/Title';
 
 const Hero = ({ salon }) => {
   return (
-    <StyledDiv>
+    <HeroWrapper>
       <img src={salon.img_url} alt={salon.name} />
-      <GradientOverlay>
+      <HeroGradient>
         <Title size="large">{salon.name}</Title>
         <Rating rating={salon.rating} reviewsCount={salon.reviews_count} color="white" large />
-      </GradientOverlay>
-    </StyledDiv>
+      </HeroGradient>
+    </HeroWrapper>
   );
 };
 
 export default Hero;
 
-const StyledDiv = styled.div`
+const HeroWrapper = styled.div`
   height: 251px;
   width: 100%;
   position: relative;
@@ -30,7 +30,7 @@ const StyledDiv = styled.div`
   }
 `;
 
-const GradientOverlay = styled.div`
+const HeroGradient = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;

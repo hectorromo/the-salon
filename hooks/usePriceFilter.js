@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 
 export default function usePriceFilter(salons) {
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(100);
+  const [minPrice, setMinPrice] = useState(null);
+  const [maxPrice, setMaxPrice] = useState(null);
   const [isFiltered, setIsFiltered] = useState(false);
   const [filteredSalons, setFilteredSalons] = useState([]);
-  const [values, setValues] = useState([0, 100]);
+  const [values, setValues] = useState([]);
 
   useEffect(() => {
     setValues([minPrice, maxPrice]);
@@ -18,12 +18,11 @@ export default function usePriceFilter(salons) {
     const filtered = salons.filter(
       (salon) => salon.cutting_price >= values[0] && salon.cutting_price <= values[1],
     );
-
-    setFilteredSalons(filtered);
-
     const isFiltering = filtered.length < salons.length;
+
     setIsFiltered(isFiltering);
-  }, [values, salons]);
+    setFilteredSalons(filtered);
+  }, [values, salons, isFiltered]);
 
   // Get min and max price from available salons.
   useEffect(() => {

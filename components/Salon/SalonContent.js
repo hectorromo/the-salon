@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-import { ClockIcon, GlobeIcon, PhoneIcon, PinIcon } from './SalonIcons';
-
-import { ChevronDownIcon } from 'components/Icons';
+import { ChevronDownIcon, ClockIcon, GlobeIcon, PhoneIcon, PinIcon } from 'components/Icons';
 import { Paragraph } from 'components/typography/Paragraph';
 
 const SalonContent = ({ salon }) => {

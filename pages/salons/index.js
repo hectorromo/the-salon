@@ -1,7 +1,8 @@
+import Head from 'next/head';
 import { useState } from 'react';
 import { salons } from 'salonData';
 
-import { ChevronLeft, FilterIcon } from 'components/Header/HeaderIcons';
+import { ChevronLeft, FilterIcon } from 'components/Icons';
 import Header from 'components/Header';
 import HeaderNavItem from 'components/Header/HeaderNavItem';
 import HeaderTitle from 'components/Header/HeaderTitle';
@@ -19,6 +20,9 @@ const SalonsPage = ({ salons }) => {
 
   return (
     <div>
+      <Head>
+        <title>Salonger | The Salon</title>
+      </Head>
       <Header>
         <HeaderNavItem>
           <ChevronLeft />
@@ -41,7 +45,7 @@ const SalonsPage = ({ salons }) => {
   );
 };
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   return {
     props: {
       salons,

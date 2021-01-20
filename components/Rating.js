@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
-import { Paragraph } from './typography/Paragraph';
 
+import { Paragraph } from 'components/typography/Paragraph';
 import { StarFilledIcon, StarEmptyIcon } from 'components/Icons';
 
 const Rating = ({ rating, reviewsCount, ...props }) => {

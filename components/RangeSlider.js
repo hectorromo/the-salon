@@ -1,7 +1,7 @@
 import { getTrackBackground, Range } from 'react-range';
 import styled from 'styled-components';
 
-import { Paragraph } from './typography/Paragraph';
+import { Paragraph } from 'components/typography/Paragraph';
 
 const RangeSlider = ({ min, max, values, onChange }) => {
   return (
