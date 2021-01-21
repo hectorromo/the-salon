@@ -1,9 +1,11 @@
-export const salons = [
+import { Salon } from "types/Salon";
+
+export const salons: Salon[] = [
   {
     id: '10',
     name: 'Huvudstaden',
     slug: 'huvudstaden',
-    cutting_price: 390,
+    cutting_price: "390",
     cutting_time: '35',
     street: 'Hjälmarvägen 89',
     postal_address: '113 57 Stockholm',
