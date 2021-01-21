@@ -3,7 +3,7 @@ import { Salon } from 'types/Salon';
 
 interface ReturnProps {
   values: number[];
-  setValues: Dispatch<SetStateAction<number[]>>;
+  setValues: Dispatch<SetStateAction<ReturnProps["values"]>>;
   minPrice: number;
   maxPrice: number;
   isFiltered: boolean;

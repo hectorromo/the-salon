@@ -3,7 +3,7 @@ import { useState, useRef, useEffect, SetStateAction, Dispatch } from 'react';
 interface ReturnProps {
   ref: React.Ref<any>;
   isVisible: boolean;
-  setIsVisible: Dispatch<SetStateAction<boolean>>
+  setIsVisible: Dispatch<SetStateAction<ReturnProps["isVisible"]>>
 }
 
 export default function useVisible(initialIsVisible: boolean): ReturnProps {
