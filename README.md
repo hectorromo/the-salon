@@ -4,6 +4,7 @@
 The Salon app contains following libraries:
 
 - Next.js
+- TypeScript
 - ESLint
 - Prettier
 - Styled Components
