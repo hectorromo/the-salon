@@ -1,10 +1,20 @@
 import styled, { css } from 'styled-components';
 
-import { Paragraph } from 'components/typography/Paragraph';
-import { StarFilledIcon, StarEmptyIcon } from 'components/Icons';
+import { Salon } from 'types/Salon';
+import { ThemeColors } from 'styles/theme';
 
-const Rating = ({ rating, reviewsCount, ...props }) => {
-  const emptyStars = 5 - rating;
+import { StarFilledIcon, StarEmptyIcon } from 'components/Icons';
+import { Paragraph } from 'components/Typography/Paragraph';
+
+interface Props {
+  rating: Salon['rating'];
+  reviewsCount: Salon['reviews_count'];
+  large?: boolean;
+  color?: keyof typeof ThemeColors;
+}
+
+export const Rating: React.FC<Props> = ({ rating, reviewsCount, ...props }) => {
+  const emptyStars: number = 5 - rating;
 
   const renderComponentsFromNumber = (number, Component) => {
     if (number < 1) return null;
@@ -26,9 +36,7 @@ const Rating = ({ rating, reviewsCount, ...props }) => {
   );
 };
 
-export default Rating;
-
-const RatingWrapper = styled.div`
+const RatingWrapper = styled.div<Pick<Props, 'large'>>`
   display: flex;
   align-items: center;
 

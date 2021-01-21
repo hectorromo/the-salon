@@ -1,16 +1,22 @@
 import Head from 'next/head';
-import Link from 'next/link';
-import { salons } from 'salonData';
-import { HeartIconInverted, ChevronLeftInverted } from 'components/Icons';
-
-import Header from 'components/Header';
-import Hero from 'components/Hero';
-import HeaderNavItem from 'components/Header/HeaderNavItem';
-import SalonContent from 'components/Salon/SalonContent';
-import Tabs from 'components/Tabs';
 import styled from 'styled-components';
+import Link from 'next/link';
 
-const Salon = ({ salon }) => {
+import { salons } from 'salonData';
+import { Salon } from 'types/Salon';
+
+import { HeartIconInverted, ChevronLeftInverted } from 'components/Icons';
+import { Header } from 'components/Header';
+import { Hero } from 'components/Hero';
+import { HeaderNavItem } from 'components/Header/HeaderNavItem';
+import { SalonContent } from 'components/Salon/SalonContent';
+import { Tabs } from 'components/Tabs';
+
+interface Props {
+  salon: Salon;
+}
+
+const SalonPage: React.FC<Props> = ({ salon }) => {
   if (!salon) return null;
 
   return (
@@ -38,7 +44,7 @@ const Salon = ({ salon }) => {
   );
 };
 
-const SalonWrapper = styled.div`
+const SalonWrapper = styled.div<{}>`
   background-color: ${(props) => props.theme.colors.background};
 `;
 
@@ -71,4 +77,4 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default Salon;
+export default SalonPage;

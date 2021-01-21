@@ -1,4 +1,4 @@
-import Svg from 'components/Svg';
+import { Svg } from 'components/Svg';
 
 export const FilterIcon = () => (
   <Svg xmlns="http://www.w3.org/2000/svg" width="19" height="18" viewBox="0 0 19 18">

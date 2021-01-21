@@ -1,9 +1,16 @@
 import styled from 'styled-components';
 
-import Rating from 'components/Rating';
-import { Title } from 'components/typography/Title';
+import { Salon } from 'types/Salon';
+import { ThemeColors } from 'styles/theme';
 
-const Hero = ({ salon }) => {
+import { Rating } from 'components/Rating';
+import { Title } from 'components/Typography/Title';
+
+interface Props {
+  salon: Salon;
+}
+
+export const Hero: React.FC<Props> = ({ salon }) => {
   return (
     <HeroWrapper>
       <img src={salon.img_url} alt={salon.name} />
@@ -15,12 +22,10 @@ const Hero = ({ salon }) => {
   );
 };
 
-export default Hero;
-
-const HeroWrapper = styled.div`
+const HeroWrapper = styled.div<{}>`
+  position: relative;
   height: 251px;
   width: 100%;
-  position: relative;
 
   img {
     width: 100%;
@@ -30,17 +35,17 @@ const HeroWrapper = styled.div`
   }
 `;
 
-const HeroGradient = styled.div`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  z-index: 1;
-  height: 125px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
-  padding: 24px ${(props) => props.theme.gutters.mobileX};
+const HeroGradient = styled.div<{}>`
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
+  position: absolute;
+  height: 125px;
+  width: 100%;
+  bottom: 0;
+  padding: 24px ${(props) => props.theme.gutters.mobileX};
+  z-index: 1;
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
   color: white;
 
   h1 {

@@ -1,15 +1,21 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
 
+import { Salon } from 'types/Salon';
 import usePriceFilter from 'hooks/usePriceFilter';
 import useVisible from 'hooks/useVisible';
 
-import { Paragraph } from 'components/typography/Paragraph';
 import { ChevronDownIcon } from 'components/Icons';
+import { Paragraph } from 'components/Typography/Paragraph';
 import { ButtonUnstyled } from 'components/ButtonUnstyled';
-import RangeSlider from 'components/RangeSlider';
+import { RangeSlider } from 'components/RangeSlider';
 
-const PriceFilter = ({ salons, onFilter }) => {
+interface Props {
+  salons: Salon[];
+  onFilter: (salons: Salon[]) => void;
+}
+
+export const PriceFilter: React.FC<Props> = ({ salons, onFilter }) => {
   const { ref, isVisible, setIsVisible } = useVisible(false);
   const { values, setValues, minPrice, maxPrice, isFiltered, filteredSalons } = usePriceFilter(
     salons,
@@ -30,7 +36,7 @@ const PriceFilter = ({ salons, onFilter }) => {
   return (
     <PriceFilterWrapper isFiltered={isFiltered} ref={ref}>
       <ToggleFilterButton isVisible={isVisible} onClick={() => setIsVisible((val) => !val)}>
-        <Paragraph weight={300}>
+        <Paragraph weight="light">
           Pris {values[0]} - {values[1]} kr
         </Paragraph>
 
@@ -48,52 +54,50 @@ const PriceFilter = ({ salons, onFilter }) => {
   );
 };
 
-export default PriceFilter;
-
-const PriceFilterWrapper = styled.div`
+const PriceFilterWrapper = styled.div<{ isFiltered: boolean }>`
+  position: relative;
   background-color: ${(props) => (props.isFiltered ? 'rgba(182, 159, 88, 0.1)' : 'white')};
   border-bottom: 1px solid ${(props) => props.theme.colors.primary};
-  position: relative;
 `;
 
-const ToggleFilterButton = styled.button`
-  width: 100%;
-  position: relative;
-  background-color: transparent;
-  padding: ${(props) => props.theme.gutters.mobileX};
+const ToggleFilterButton = styled.button<{ isVisible: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  width: 100%;
+  padding: ${(props) => props.theme.gutters.mobileX};
+  background-color: transparent;
   border: none;
   outline: none;
   cursor: pointer;
 `;
 
-const FilterChevron = styled.span`
-  transform: rotate(${(props) => (props.isVisible ? '180deg' : '0')});
+const FilterChevron = styled.span<{ isVisible: boolean }>`
   padding: 2px 7px;
   margin-right: -7px;
+  transform: rotate(${(props) => (props.isVisible ? '180deg' : '0')});
   transition: all 0.3s;
 `;
 
-const PriceFilterContainer = styled.div`
-  text-align: center;
+const PriceFilterContainer = styled.div<{}>`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  text-align: center;
   align-items: center;
   height: 110px;
+  width: 100%;
   position: absolute;
-  bottom: 0;
-  z-index: 10;
   top: 100%;
+  left: 0;
+  /* bottom: 0; */
+  z-index: 10;
+  padding: ${(props) => props.theme.gutters.mobileX} ${(props) => props.theme.gutters.mobileXLarge};
   background: white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  left: 0;
-  padding: ${(props) => props.theme.gutters.mobileX} ${(props) => props.theme.gutters.mobileXLarge};
 `;
 
-const ResetFilter = styled(ButtonUnstyled)`
+const ResetFilter = styled(ButtonUnstyled)<{}>`
   margin-top: ${(props) => props.theme.gutters.mobileXNormal};
 `;

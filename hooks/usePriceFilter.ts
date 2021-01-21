@@ -1,11 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Dispatch, SetStateAction } from 'react';
+import { Salon } from 'types/Salon';
 
-export default function usePriceFilter(salons) {
-  const [minPrice, setMinPrice] = useState(null);
-  const [maxPrice, setMaxPrice] = useState(null);
-  const [isFiltered, setIsFiltered] = useState(false);
-  const [filteredSalons, setFilteredSalons] = useState([]);
-  const [values, setValues] = useState([]);
+interface ReturnProps {
+  values: number[];
+  setValues: Dispatch<SetStateAction<number[]>>;
+  minPrice: number;
+  maxPrice: number;
+  isFiltered: boolean;
+  filteredSalons: Salon[]
+}
+
+export default function usePriceFilter(salons: Salon[]): ReturnProps {
+  const [minPrice, setMinPrice] = useState<number>(null);
+  const [maxPrice, setMaxPrice] = useState<number>(null);
+  const [isFiltered, setIsFiltered] = useState<boolean>(false);
+  const [filteredSalons, setFilteredSalons] = useState<Salon[]>([]);
+  const [values, setValues] = useState<number[]>([]);
 
   useEffect(() => {
     setValues([minPrice, maxPrice]);
@@ -15,9 +25,7 @@ export default function usePriceFilter(salons) {
   useEffect(() => {
     if (!salons && !salons.length) return;
 
-    const filtered = salons.filter(
-      (salon) => salon.cutting_price >= values[0] && salon.cutting_price <= values[1],
-    );
+    const filtered = salons.filter((salon) => parseInt(salon.cutting_price) >= values[0] && parseInt(salon.cutting_price) <= values[1]);
     const isFiltering = filtered.length < salons.length;
 
     setIsFiltered(isFiltering);
@@ -35,13 +43,13 @@ export default function usePriceFilter(salons) {
     setMaxPrice(max);
   }, [salons]);
 
-  const getMinPrice = (salons) => {
+  const getMinPrice = (salons: Salon[]): number => {
     const values = salons.map((salon) => salon.cutting_price);
 
     return Math.min.apply(null, values);
   };
 
-  const getMaxPrice = (salons) => {
+  const getMaxPrice = (salons: Salon[]): number => {
     const values = salons.map((salon) => salon.cutting_price);
 
     return Math.max.apply(null, values);

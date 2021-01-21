@@ -1,10 +1,15 @@
 import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
 
-import { GlobalStyle } from 'styles/Global';
+import { GlobalStyle } from 'styles/global';
 import { theme } from 'styles/theme';
 
-export default function App({ Component, pageProps }) {
+interface Props {
+  Component: any;
+  pageProps: any;
+}
+
+export default function App({ Component, pageProps }: Props) {
   return (
     <>
       <Head>

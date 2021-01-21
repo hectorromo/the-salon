@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.svg`
+export const Svg = styled.svg<{}>`
   svg {
     display: inline-block;
     path {

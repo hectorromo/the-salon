@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-const Tabs = () => {
+export const Tabs = () => {
   return (
     <TabWrapper>
       <Tab active>Info</Tab>
@@ -9,20 +9,18 @@ const Tabs = () => {
   );
 };
 
-export default Tabs;
-
 const TabWrapper = styled.div`
-  background-color: white;
   display: flex;
+  background-color: white;
 `;
 
-const Tab = styled.a`
-  cursor: pointer;
+const Tab = styled.a<{ active?: boolean }>`
+  position: relative;
   padding: 16px 0;
   width: 50%;
   text-align: center;
-  position: relative;
   border-bottom: 1px solid ${(props) => props.theme.colors.border};
+  cursor: pointer;
 
   ${(props) =>
     props.active &&
@@ -31,9 +29,9 @@ const Tab = styled.a`
         position: absolute;
         left: 0;
         bottom: -1px;
-        content: '';
         width: 100%;
         height: 2px;
+        content: '';
         background-color: ${(props) => props.theme.colors.primary};
       }
     `}

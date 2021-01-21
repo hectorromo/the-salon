@@ -1,13 +1,18 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 
+import { Salon } from 'types/Salon';
+
 import { ChevronRightIcon } from 'components/Icons';
+import { Rating } from 'components/Rating';
+import { Paragraph } from 'components/Typography/Paragraph';
+import { Title } from 'components/Typography/Title';
 
-import Rating from 'components/Rating';
-import { Paragraph } from 'components/typography/Paragraph';
-import { Title } from 'components/typography/Title';
+interface Props {
+  salon: Salon;
+}
 
-const ListItem = ({ salon }) => {
+export const SalonsListItem: React.FC<Props> = ({ salon }) => {
   return (
     <StyledListItem>
       <Link href={`/salons/${salon.slug}`}>
@@ -22,14 +27,14 @@ const ListItem = ({ salon }) => {
                 {salon.name}
               </Title>
               <Rating rating={salon.rating} reviewsCount={salon.reviews_count} />
-              <Paragraph color="grayDark" weight="300">
+              <Paragraph color="grayDark" weight="light">
                 {salon.street}
               </Paragraph>
             </ColMiddle>
 
             <ColRight>
               <Paragraph>{salon.cutting_price} kr</Paragraph>
-              <Paragraph size="small" color="grayDark" weight="300">
+              <Paragraph size="small" color="grayDark" weight="light">
                 {salon.cutting_time} min
               </Paragraph>
             </ColRight>
@@ -44,11 +49,10 @@ const ListItem = ({ salon }) => {
   );
 };
 
-export default ListItem;
-
-const StyledListItem = styled.li`
+const StyledListItem = styled.li<{}>`
   position: relative;
   border-bottom: 1px solid ${(props) => props.theme.colors.border};
+
   a {
     display: block;
     position: relative;
@@ -64,35 +68,40 @@ const StyledListItem = styled.li`
   }
 `;
 
-const ListItemInner = styled.div`
+const ListItemInner = styled.div<{}>`
   display: flex;
   flex-direction: row;
 `;
 
-const ColLeft = styled.div`
+const ColLeft = styled.div<{}>`
   width: 68px;
+
   p {
     line-height: 24px;
   }
 `;
-const ColMiddle = styled.div`
+
+const ColMiddle = styled.div<{}>`
   margin-right: auto;
+
   div {
     margin: 12px 0 13px;
   }
 `;
-const ColRight = styled.div`
+
+const ColRight = styled.div<{}>`
   text-align: right;
+
   p:first-child {
-    line-height: 24px;
     margin-bottom: 10px;
+    line-height: 24px;
   }
 `;
 
-const ListIcon = styled.span`
-  position: absolute;
+const ListIcon = styled.span<{}>`
   display: block;
+  position: absolute;
   top: 50%;
-  transform: translateY(-50%);
   right: 0;
+  transform: translateY(-50%);
 `;

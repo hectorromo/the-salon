@@ -1,6 +1,12 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, SetStateAction, Dispatch } from 'react';
 
-export default function useVisible(initialIsVisible) {
+interface ReturnProps {
+  ref: React.Ref<any>;
+  isVisible: boolean;
+  setIsVisible: Dispatch<SetStateAction<boolean>>
+}
+
+export default function useVisible(initialIsVisible: boolean): ReturnProps {
   const [isVisible, setIsVisible] = useState(initialIsVisible);
   const ref = useRef(null);
 

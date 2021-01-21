@@ -2,16 +2,22 @@ import Head from 'next/head';
 import { useState } from 'react';
 import { salons } from 'salonData';
 
-import { ChevronLeft, FilterIcon } from 'components/Icons';
-import Header from 'components/Header';
-import HeaderNavItem from 'components/Header/HeaderNavItem';
-import HeaderTitle from 'components/Header/HeaderTitle';
-import PriceFilter from 'components/PriceFilter';
-import SalonsList from 'components/Salons/SalonsList';
-import SalonsListItem from 'components/Salons/SalonsListItem';
-import SalonsListEmpty from 'components/Salons/SalonsListEmpty';
+import { Salon } from 'types/Salon';
 
-const SalonsPage = ({ salons }) => {
+import { ChevronLeft, FilterIcon } from 'components/Icons';
+import { Header } from 'components/Header';
+import { HeaderNavItem } from 'components/Header/HeaderNavItem';
+import { HeaderTitle } from 'components/Header/HeaderTitle';
+import { PriceFilter } from 'components/PriceFilter';
+import { SalonsList } from 'components/Salons/SalonsList';
+import { SalonsListItem } from 'components/Salons/SalonsListItem';
+import { SalonsListEmpty } from 'components/Salons/SalonsListEmpty';
+
+interface Props {
+  salons: Salon[];
+}
+
+const SalonsPage: React.FC<Props> = ({ salons }) => {
   const [salonList, setSalonList] = useState([]);
 
   const filterSalons = (filteredSalons) => {
